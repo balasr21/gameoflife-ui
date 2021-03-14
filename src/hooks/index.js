@@ -7,11 +7,14 @@ export const useMatrixPosition = (row, column, initialPos) => {
   const fetchData = () => {
     axios
       .create()
-      .post("http://localhost:8080/start/", {
-        row: row,
-        column: column,
-        position: initialPos,
-      })
+      .post(
+        "http://gameoflifeapi-env.eba-afgjpfkt.eu-west-2.elasticbeanstalk.com/start/",
+        {
+          row: row,
+          column: column,
+          position: initialPos,
+        }
+      )
       .then((res) => {
         setResponse(res);
       });
