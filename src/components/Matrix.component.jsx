@@ -1,20 +1,8 @@
 import React from "react";
+import { getMatrix } from "../util/utils";
 
 export const Matrix = ({ liveCells, row, column }) => {
-  let data = [];
-
-  let tableData = [];
-  let i,
-    j,
-    k = 1;
-
-  for (i = 0; i < row; i++) {
-    for (j = 0; j < column; j++) {
-      tableData.push(k++);
-    }
-    data.push(tableData);
-    tableData = [];
-  }
+  let data = getMatrix(row, column);
 
   return (
     <div className="game">
@@ -25,9 +13,10 @@ export const Matrix = ({ liveCells, row, column }) => {
               {row.map((cellId) => {
                 let isCellAlive = liveCells && liveCells.includes(cellId);
                 return (
-                  <th className={`${isCellAlive && "cell__live"}`} key={cellId}>
-                    {cellId}
-                  </th>
+                  <th
+                    className={`${isCellAlive && "cell__live"}`}
+                    key={cellId}
+                  ></th>
                 );
               })}
             </tr>

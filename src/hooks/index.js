@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const useMatrixPosition = (row, column, initialPos) => {
-  const [response, setResponse] = useState([]);
+  console.log("API Call for ", row, column);
+
+  const [games, setGames] = useState([]);
 
   const fetchData = () => {
+    console.log("Making Request....");
     axios
       .create()
       .post(
@@ -16,11 +19,12 @@ export const useMatrixPosition = (row, column, initialPos) => {
         }
       )
       .then((res) => {
-        setResponse(res);
+        console.log("Received data from API");
+        setGames(res);
       });
   };
 
   useEffect(fetchData, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return { response, setResponse };
+  return { games, setGames };
 };

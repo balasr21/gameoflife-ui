@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Game } from "./Game.component";
-import { getInitialPos } from "../util/utils";
-import { useMatrixPosition } from "../hooks/index";
+import { Interface } from "./Interface.component";
 
 export const Control = () => {
   const [row, setRow] = useState(20);
   const [column, setColumn] = useState(20);
-  const [start, setStart] = useState(false);
-
-  let { response } = useMatrixPosition(row, column, getInitialPos(row, column));
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,6 +21,7 @@ export const Control = () => {
           placeholder="Row"
           value={row}
           onChange={(e) => {
+            console.log(e);
             setRow(e.target.value);
           }}
         ></input>
@@ -36,13 +32,8 @@ export const Control = () => {
           value={column}
           onChange={(e) => setColumn(e.target.value)}
         ></input>
-        <button onClick={() => setStart(true)} type="submit">
-          Start
-        </button>
       </form>
-      {response && response.data && row > 0 && column > 0 && (
-        <Game start={start} games={response} row={row} column={column} />
-      )}
+      {<Interface row={row} column={column} />}
     </div>
   );
 };
