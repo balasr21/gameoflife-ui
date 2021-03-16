@@ -16,7 +16,7 @@ export const Interface = ({ row, column }) => {
     axios
       .create()
       .post(
-        "http://gameoflifeapi-env.eba-afgjpfkt.eu-west-2.elasticbeanstalk.com/start/",
+        "https://gameoflifeapi-env.eba-xvhqsdpp.eu-west-2.elasticbeanstalk.com/start/",
         {
           row: row,
           column: column,
