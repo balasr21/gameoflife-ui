@@ -12,8 +12,6 @@ export const getInitialPos = (row, column) => {
   response.push(fourthPos);
   response.push(fifthPos);
 
-  console.log("Row cl ", row, column);
-  console.log("Init for ", response);
   return response;
 };
 

@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  background-color: #f0e4d7;
 }
 
 .title {
@@ -7,7 +8,9 @@
 }
 
 .game {
+  display: flex;
   padding-top: 20px;
+  justify-content: space-around;
 }
 .game .main-table {
   border: 1px solid black;
@@ -24,11 +27,18 @@
 }
 
 .control__container {
-  padding: 10px;
-  width: fit-content;
+  justify-content: flex-start;
 }
-.control__container input {
+.control__container .input__form {
+  display: inline-block;
+}
+.control__container .input__form input {
+  margin: 0 20px 0 20px;
   width: fit-content;
+  border-radius: 5px;
+}
+.control__container .btn__submit {
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=App.css.map */

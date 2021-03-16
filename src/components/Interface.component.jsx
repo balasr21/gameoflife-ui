@@ -6,13 +6,9 @@ import axios from "axios";
 export const Interface = ({ row, column }) => {
   const [start, setStart] = useState(false);
 
-  //let { games } = useMatrixPosition(row, column, getInitialPos(row, column));
   const [games, setGames] = useState([]);
 
-  console.log("Rendering Interface...", JSON.stringify(games));
-
   const fetchData = () => {
-    console.log("Making Request....");
     axios
       .create()
       .post("https://www.gameoflife.balasr.com/start/", {
@@ -21,14 +17,17 @@ export const Interface = ({ row, column }) => {
         position: getInitialPos(row, column),
       })
       .then((res) => {
-        console.log("Received data from API");
         setGames(res);
+      })
+      .catch((e) => {
+        alert("Invalid Input Parameters", e);
       });
   };
 
   return (
     <>
       <button
+        className="btn__submit"
         onClick={() => {
           setStart(true);
           fetchData();

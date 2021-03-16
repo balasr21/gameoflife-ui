@@ -7,11 +7,8 @@ export const Game = ({ setStart, games, row, column }) => {
   const [liveCells, setLiveCells] = useState(initialPos);
   const [index, setIndex] = useState(0);
 
-  console.log("Games data ", JSON.stringify(games));
-
   useEffect(() => {
     setTimeout(() => {
-      console.log("Games data inside ", JSON.stringify(games.data));
       games && games.data && setLiveCells(games.data[index]);
       games && games.data && index < games.data.length && setIndex(index + 1);
       games && games.data && index >= games.data.length && setStart(false);

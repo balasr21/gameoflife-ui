@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  background-color: #f0e4d7;
 }
 
 .title {
@@ -7,7 +8,9 @@
 }
 
 .game {
+  display: flex;
   padding-top: 20px;
+  justify-content: space-around;
 
   .main-table {
     border: 1px solid black;
@@ -27,10 +30,19 @@
 }
 
 .control__container {
-  padding: 10px;
-  width: fit-content;
+  // display: flex;
+  justify-content: flex-start;
 
-  input {
-    width: fit-content;
+  .input__form {
+    display: inline-block;
+    input {
+      margin: 0 20px 0 20px;
+      width: fit-content;
+      border-radius: 5px;
+    }
+  }
+
+  .btn__submit {
+    border-radius: 5px;
   }
 }

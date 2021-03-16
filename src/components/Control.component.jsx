@@ -6,25 +6,24 @@ export const Control = () => {
   const [column, setColumn] = useState(20);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("Initial wait to start...");
-    }, 3000);
+    const timer = setTimeout(() => {}, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="control__container">
-      <form>
+      <form className="input__form">
+        <label>Row:</label>
         <input
           type="text"
           name="Row"
           placeholder="Row"
           value={row}
           onChange={(e) => {
-            console.log(e);
             setRow(e.target.value);
           }}
         ></input>
+        <label>Column:</label>
         <input
           type="text"
           name="Column"

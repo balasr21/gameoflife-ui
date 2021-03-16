@@ -1,6 +1,10 @@
 import React from "react";
 import { getMatrix } from "../util/utils";
 
+const handleBackgroundChange = (e) => {
+  e.target.classList.toggle("cell__selected");
+};
+
 export const Matrix = ({ liveCells, row, column }) => {
   let data = getMatrix(row, column);
 
@@ -16,6 +20,7 @@ export const Matrix = ({ liveCells, row, column }) => {
                   <th
                     className={`${isCellAlive && "cell__live"}`}
                     key={cellId}
+                    onClick={(e) => handleBackgroundChange(e)}
                   ></th>
                 );
               })}
