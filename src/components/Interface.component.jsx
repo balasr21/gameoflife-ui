@@ -15,7 +15,7 @@ export const Interface = ({ row, column }) => {
     console.log("Making Request....");
     axios
       .create()
-      .post("https://www.gameoflife.balasr.com/start", {
+      .post("https://www.gameoflife.balasr.com/start/", {
         row: row,
         column: column,
         position: getInitialPos(row, column),
