@@ -15,14 +15,11 @@ export const Interface = ({ row, column }) => {
     console.log("Making Request....");
     axios
       .create()
-      .post(
-        "https://gameoflifeapi-env.eba-xvhqsdpp.eu-west-2.elasticbeanstalk.com/start/",
-        {
-          row: row,
-          column: column,
-          position: getInitialPos(row, column),
-        }
-      )
+      .post("https://www.gameoflife.balasr.com/start", {
+        row: row,
+        column: column,
+        position: getInitialPos(row, column),
+      })
       .then((res) => {
         console.log("Received data from API");
         setGames(res);
