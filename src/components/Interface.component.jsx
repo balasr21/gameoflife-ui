@@ -15,7 +15,7 @@ export const Interface = ({ row, column }) => {
   const fetchData = (games) => {
     axios
       .create()
-      .post("http://localhost:8080/start/", {
+      .post("https://www.gameoflife.balasr.com/start/", {
         row: row,
         column: column,
         position: games,
