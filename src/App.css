@@ -22,7 +22,13 @@
   border: 1px solid black;
   color: gray;
 }
+.game .main-table .click__disabled {
+  pointer-events: none;
+}
 .game .main-table .cell__live {
+  background-color: black;
+}
+.game .main-table .cell__selected {
   background-color: black;
 }
 

@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Interface } from "./Interface.component";
+import { useMatrixDimensionValue } from "../context/index";
 
 export const Control = () => {
-  const [row, setRow] = useState(20);
-  const [column, setColumn] = useState(20);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {}, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  const { dimension, setDimension } = useMatrixDimensionValue();
 
   return (
     <div className="control__container">
@@ -18,9 +13,12 @@ export const Control = () => {
           type="text"
           name="Row"
           placeholder="Row"
-          value={row}
+          value={dimension.row}
           onChange={(e) => {
-            setRow(e.target.value);
+            setDimension({
+              column: dimension.column,
+              row: e.target.value,
+            });
           }}
         ></input>
         <label>Column:</label>
@@ -28,11 +26,16 @@ export const Control = () => {
           type="text"
           name="Column"
           placeholder="Column"
-          value={column}
-          onChange={(e) => setColumn(e.target.value)}
+          value={dimension.column}
+          onChange={(e) => {
+            setDimension({
+              row: dimension.row,
+              column: e.target.value,
+            });
+          }}
         ></input>
       </form>
-      {<Interface row={row} column={column} />}
+      {<Interface row={dimension.row} column={dimension.column} />}
     </div>
   );
 };

@@ -1,19 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Matrix } from "./Matrix.component";
-import { getInitialPos } from "../util/utils";
 
-export const Game = ({ setStart, games, row, column }) => {
-  let initialPos = getInitialPos(row, column);
-  const [liveCells, setLiveCells] = useState(initialPos);
-  const [index, setIndex] = useState(0);
+export const Game = ({ start, setStart, games, row, column }) => {
+  // eslint-disable-next-line
+  const [liveCells, setLiveCells] = useState(games);
 
-  useEffect(() => {
-    setTimeout(() => {
-      games && games.data && setLiveCells(games.data[index]);
-      games && games.data && index < games.data.length && setIndex(index + 1);
-      games && games.data && index >= games.data.length && setStart(false);
-    }, 100);
-  }, [games, index, setStart]);
+  let gamePosition = games;
 
-  return <Matrix liveCells={liveCells} row={row} column={column} />;
+  const handleChange = (e, cellId, isCellAlive) => {
+    e.target.classList.toggle("cell__live");
+    handleMatrixPosition(cellId, isCellAlive);
+  };
+
+  const handleMatrixPosition = (cellId, isCellAlive) => {
+    if (isCellAlive) {
+      var index = gamePosition.indexOf(cellId);
+      if (index !== -1) {
+        gamePosition.splice(index, 1);
+      }
+    } else {
+      gamePosition.push(cellId);
+    }
+    setLiveCells(gamePosition);
+  };
+
+  return (
+    <Matrix
+      start={start}
+      setLiveCells={setLiveCells}
+      liveCells={games}
+      row={row}
+      column={column}
+      handleChange={handleChange}
+    />
+  );
 };

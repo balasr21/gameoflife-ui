@@ -23,7 +23,15 @@
       color: gray;
     }
 
+    .click__disabled {
+      pointer-events: none;
+    }
+
     .cell__live {
+      background-color: black;
+    }
+
+    .cell__selected {
       background-color: black;
     }
   }

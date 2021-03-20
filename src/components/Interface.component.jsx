@@ -1,43 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Game } from "./Game.component";
-import { getInitialPos } from "../util/utils";
 import axios from "axios";
+import { getInitialPos } from "../util/utils";
 
 export const Interface = ({ row, column }) => {
   const [start, setStart] = useState(false);
 
-  const [games, setGames] = useState([]);
+  let [games, setGames] = useState([]);
 
-  const fetchData = () => {
+  if (start && games.length === 0) {
+    setGames(getInitialPos(row, column));
+  }
+
+  const fetchData = (games) => {
     axios
       .create()
-      .post("https://www.gameoflife.balasr.com/start/", {
+      .post("http://localhost:8080/start/", {
         row: row,
         column: column,
-        position: getInitialPos(row, column),
+        position: games,
       })
       .then((res) => {
-        setGames(res);
+        setGames(res.data);
       })
       .catch((e) => {
         alert("Invalid Input Parameters", e);
       });
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      start && fetchData(games);
+    }, 100);
+    // eslint-disable-next-line
+  }, [start, games]);
+
   return (
     <>
       <button
         className="btn__submit"
-        onClick={() => {
-          setStart(true);
-          fetchData();
-        }}
+        onClick={() => setStart(!start)}
         type="submit"
       >
-        Start
+        {start ? "Stop" : "Start"}
       </button>
-      {start && games && (
-        <Game setStart={setStart} games={games} row={row} column={column} />
+      {games && (
+        <Game
+          start={start}
+          setStart={setStart}
+          games={games}
+          row={row}
+          column={column}
+        />
       )}
     </>
   );
