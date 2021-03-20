@@ -36,6 +36,6 @@ Here is the screenshot of the game
 
 This solution is now available in
 
-### `[GameOfLife - UI](https://gameofapi.web.app/)`
+### [GameOfLife - UI](https://gameofapi.web.app/)
 
 Hosted in Firebase
